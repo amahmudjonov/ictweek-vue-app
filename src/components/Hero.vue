@@ -5,15 +5,7 @@
 
 <template>
   <section class="relative w-full overflow-hidden" aria-label="Hero section">
-    <!-- Backgrounds -->
-    <div class="absolute inset-0 z-0 overflow-hidden">
-      <img
-        src="../assets/bg_row_1.png"
-        class="absolute inset-0 w-full h-full object-cover opacity-70 mix-blend-screen"
-        alt=""
-        aria-hidden="true"
-        fetchpriority="high"
-      />
+    <!-- <div class="absolute inset-0 z-0 overflow-hidden">
       <img
         src="../assets/bg_northern_lights.png"
         class="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-80"
@@ -26,11 +18,9 @@
         alt=""
         aria-hidden="true"
       />
-      <!-- Top gradient overlay: dark to transparent -->
       <div class="absolute inset-0 bg-gradient-to-b from-[#010D12] via-[#010D12]/60 to-transparent pointer-events-none"></div>
-      <!-- Bottom fade to page bg -->
       <div class="absolute bottom-0 left-0 right-0 h-[300px] bg-gradient-to-t from-[#121B26] to-transparent pointer-events-none"></div>
-    </div>
+    </div> -->
 
     <!-- Content wrapper: 1440px full-bleed, 80px side padding, content 1280px -->
     <div class="relative z-10 w-full pt-[150px] xl:pt-[191px] pb-[60px] xl:pb-[80px]">
@@ -48,12 +38,15 @@
           <div class="w-full xl:w-[781px] h-[280px] sm:h-[380px] xl:h-[500px] relative rounded-[24px] backdrop-blur-[25px] flex-shrink-0 overflow-hidden">
             <!-- Inner video frame: 769x488, 6px inset -->
             <div class="absolute inset-[6px] rounded-[17px] overflow-hidden bg-[#121B26]/30">
-              <img
-                src="../assets/video.png"
+              <video
+                src="../assets/Highlights_ICT_Week_Uzbekistan_2025_One_Vision,_One_Future_97mb (1).mp4"
                 alt="ICT Week 2026 - Summit preview video"
+                autoplay
+                muted
+                loop
                 class="w-full h-full object-cover"
                 loading="eager"
-              />
+              ></video>
               <!-- Play button overlay: centered, 69x69 -->
               <button
                 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[69px] h-[69px] rounded-full bg-[#121B26]/30 border border-white/20 backdrop-blur-md flex items-center justify-center hover:bg-[#84FFC1]/20 hover:border-[#84FFC1]/40 transition-all group"
