@@ -4,51 +4,58 @@ import { ref } from 'vue'
 const isMobileMenuOpen = ref(false)
 
 const navItems = [
-  { name: 'Home', href: '#', active: true },
-  { name: 'Program', href: '#program', active: false },
-  { name: 'Partners', href: '#partners', active: false },
-  { name: 'Incentives', href: '#register', active: false }
+  { name: 'Home', href: '#' },
+  { name: 'Program', href: '#program' },
+  { name: 'Partners', href: '#partners' },
+  { name: 'Incentives', href: '#register' }
 ]
+
+const activeItem = ref('Home')
 
 const closeMenu = () => { isMobileMenuOpen.value = false }
 </script>
 
 <template>
-  <!-- Navbar -->
-  <header class="site-header">
-    <div class="header-pill">
+  <header class="fixed top-[20px] xl:top-[37px] left-1/2 -translate-x-1/2 w-[95vw] xl:w-[1040px] z-50 ">
+    <div class="w-full h-[70px] xl:h-[80px] bg-white/5 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-between px-5 xl:px-[32px] stat-card">
 
-      <!-- Logo -->
-      <!-- <a href="#" aria-label="ICT Week 2026 Home" class="logo-link">
-        <img src="../assets/ict_week_2026.svg" alt="ICT Week 2026" class="logo-img" />
-      </a> -->
+      <a href="#" aria-label="ICT Week 2026 Home">
+        <img src="../assets/ict_week_2026.svg" alt="ICT Week 2026" class="h-[32px] xl:h-[42px] object-contain" />
+      </a>
 
-      <!-- Desktop Nav -->
-      <nav aria-label="Main navigation" class="desktop-nav">
+      <nav aria-label="Main navigation" class="hidden lg:flex items-center h-[52px] rounded-full px-[6px] gap-[6px]">
         <a
           v-for="item in navItems"
           :key="item.name"
           :href="item.href"
-          class="nav-link"
-          :class="item.active ? 'nav-link--active' : 'nav-link--inactive'"
+          class="h-full flex items-center px-[24px] rounded-full text-[16px] font-medium leading-[22px] transition-all duration-200"
+          :class="activeItem === item.name
+            ? 'pill-btn'
+            : 'text-[#B5B2B1] hover:text-white'"
+          @click="activeItem = item.name"
         >{{ item.name }}</a>
       </nav>
 
-      <!-- Desktop CTA -->
-      <div class="desktop-cta">
-        <button class="lang-btn">
-          English
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M4 6L8 10L12 6" stroke="#B5B2B1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <a href="#register" class="register-btn">Register now</a>
+      <div class="hidden lg:flex items-center gap-3">
+        <select 
+          class="h-[52px] pl-6 pr-10 rounded-full bg-white/5 text-[#B5B2B1] text-[16px] font-medium hover:bg-white/10 transition-colors cursor-pointer outline-none appearance-none bg-no-repeat"
+          style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 viewBox=%220 0 12 8%22 fill=%22none%22><path d=%22M1 1L6 6L11 1%22 stroke=%22%23B5B2B1%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>'); background-position: right 16px center;"
+          name="lang" 
+          id="lang"
+        >
+        <option value="uz" class="bg-[#1a1a1a] text-white" selected>Uzbek</option>
+          <option value="en" class="bg-[#1a1a1a] text-white">English</option>
+          <option value="ru" class="bg-[#1a1a1a] text-white">Russian</option>
+        </select>
+        <a
+          href="#register"
+          class="h-[52px] px-[24px] rounded-full bg-gradient-to-b from-[#84FFC1] to-[#459B6F] text-[#121B26] text-[16px] font-semibold flex items-center hover:opacity-90 hover:scale-[1.02] transition-all duration-200 shadow-[0_0_0_0_rgba(132,255,193,0.4)] hover:shadow-[0_0_20px_rgba(132,255,193,0.4)]"
+        >Register now</a>
       </div>
 
-      <!-- Hamburger -->
       <button
         @click="isMobileMenuOpen = !isMobileMenuOpen"
-        class="hamburger-btn"
+        class="lg:hidden text-white p-2"
         :aria-expanded="isMobileMenuOpen"
         aria-label="Toggle menu"
       >
@@ -61,21 +68,27 @@ const closeMenu = () => { isMobileMenuOpen.value = false }
       </button>
     </div>
 
-    <!-- Mobile Menu -->
     <Transition name="fade">
-      <div v-if="isMobileMenuOpen" class="mobile-menu">
-        <nav class="mobile-nav">
+      <div
+        v-if="isMobileMenuOpen"
+        class="lg:hidden fixed inset-0 top-0 bg-[#010D12]/97 backdrop-blur-2xl pt-24 px-8 z-40 flex flex-col"
+      >
+        <nav class="flex flex-col gap-6 mt-8">
           <a
             v-for="item in navItems"
             :key="item.name"
             :href="item.href"
             @click="closeMenu"
-            class="mobile-nav-link"
-            :class="item.active ? 'mobile-nav-link--active' : 'mobile-nav-link--inactive'"
+            class="text-3xl font-bold transition-colors"
+            :class="item.active ? 'text-[#84FFC1]' : 'text-white/70 hover:text-white'"
           >{{ item.name }}</a>
         </nav>
-        <div class="mobile-cta">
-          <a href="#register" @click="closeMenu" class="mobile-register-btn">Register now</a>
+        <div class="mt-auto mb-12 flex flex-col gap-4">
+          <a
+            href="#register"
+            @click="closeMenu"
+            class="w-full h-[56px] rounded-full bg-gradient-to-b from-[#84FFC1] to-[#459B6F] text-[#121B26] text-xl font-bold flex items-center justify-center"
+          >Register now</a>
         </div>
       </div>
     </Transition>
@@ -83,196 +96,6 @@ const closeMenu = () => { isMobileMenuOpen.value = false }
 </template>
 
 <style scoped>
-/* ---------- Header shell ---------- */
-.site-header {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 95vw;
-  z-index: 50;
-}
-@media (min-width: 1280px) {
-  .site-header { top: 37px; width: 1040px; }
-}
-
-.header-pill {
-  width: 100%;
-  height: 70px;
-  background: rgba(255, 255, 255, 0.05);
-  -webkit-backdrop-filter: blur(24px);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-@media (min-width: 1280px) {
-  .header-pill { height: 80px; padding: 0 32px; }
-}
-
-/* ---------- Logo ---------- */
-.logo-link { display: flex; align-items: center; }
-.logo-img { height: 32px; object-fit: contain; }
-@media (min-width: 1280px) {
-  .logo-img { height: 42px; }
-}
-
-/* ---------- Desktop nav ---------- */
-.desktop-nav {
-  display: none;
-  align-items: center;
-  height: 52px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
-  padding: 0 6px;
-  gap: 6px;
-}
-@media (min-width: 1024px) {
-  .desktop-nav { display: flex; }
-}
-
-.nav-link {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 24px;
-  border-radius: 9999px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
-}
-.nav-link--active {
-  background: #01141A;
-  border: 1px solid #84FFC1;
-  color: #FFFFFF;
-  font-weight: 600;
-}
-.nav-link--inactive {
-  color: #B5B2B1;
-  border: 1px solid transparent;
-}
-.nav-link--inactive:hover { color: #FFFFFF; }
-
-/* ---------- Desktop CTA ---------- */
-.desktop-cta { display: none; align-items: center; gap: 12px; }
-@media (min-width: 1024px) {
-  .desktop-cta { display: flex; }
-}
-
-.lang-btn {
-  height: 52px;
-  padding: 0 24px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #B5B2B1;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-.lang-btn:hover { background: rgba(255, 255, 255, 0.1); }
-
-.register-btn {
-  height: 52px;
-  padding: 0 24px;
-  border-radius: 9999px;
-  background: linear-gradient(to bottom, #84FFC1, #459B6F);
-  color: #121B26;
-  font-size: 16px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  box-shadow: 0 0 0 0 rgba(132, 255, 193, 0.4);
-  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-.register-btn:hover {
-  opacity: 0.9;
-  transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(132, 255, 193, 0.4);
-}
-
-/* ---------- Hamburger ---------- */
-.hamburger-btn {
-  display: block;
-  color: #FFFFFF;
-  background: none;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-}
-@media (min-width: 1024px) {
-  .hamburger-btn { display: none; }
-}
-
-/* ---------- Mobile menu ---------- */
-.mobile-menu {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  inset: 0;
-  top: 0;
-  background: rgba(1, 13, 18, 0.97);
-  -webkit-backdrop-filter: blur(40px);
-  backdrop-filter: blur(40px);
-  padding: 96px 32px 0;
-  z-index: 40;
-}
-@media (min-width: 1024px) {
-  .mobile-menu { display: none; }
-}
-
-.mobile-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-top: 32px;
-}
-
-.mobile-nav-link {
-  font-size: 30px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-.mobile-nav-link--active { color: #84FFC1; }
-.mobile-nav-link--inactive { color: rgba(255, 255, 255, 0.7); }
-.mobile-nav-link--inactive:hover { color: #FFFFFF; }
-
-.mobile-cta {
-  margin-top: auto;
-  margin-bottom: 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.mobile-register-btn {
-  width: 100%;
-  height: 56px;
-  border-radius: 9999px;
-  background: linear-gradient(to bottom, #84FFC1, #459B6F);
-  color: #121B26;
-  font-size: 20px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-/* ---------- Transition ---------- */
 .fade-enter-active, .fade-leave-active { transition: opacity 0.2s; }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
 </style>

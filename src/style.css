@@ -13,7 +13,9 @@
   --color-card-border: rgba(255, 255, 255, 0.1);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -55,4 +57,99 @@ body {
     linear-gradient(90deg, #155B7F 0%, #1BDB86 100%);
   background-origin: border-box;
   background-clip: padding-box, border-box;
+}
+
+.stat-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  isolation: isolate;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  /* толщина обводки */
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0.05) 45%,
+      rgba(255, 255, 255, 0.15) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.pill-btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 40px;
+  border-radius: 999px;
+  background: radial-gradient(120% 150% at 50% -20%,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(0, 0, 0, 0) 60%);
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+}
+
+.pill-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg,
+      rgba(150, 220, 200, 0.4) 0%,
+      rgba(150, 220, 200, 0.05) 40%,
+      rgba(150, 220, 200, 0.15) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.deal-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.deal-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #34e89e 0%, #2b5fd9 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.deal-card__badge {
+  width: 72px;
+  text-align: center;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(90deg, #34e89e, #6ee7c9);
+  border-bottom-left-radius: 10px;
+  color: #0a1f17;
 }

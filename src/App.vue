@@ -9,7 +9,7 @@ import Footer from './components/Footer.vue'
 </script>
 
 <template>
-  <div class="min-h-screen w-full bg-[#121B26] font-[Manrope,sans-serif] overflow-x-hidden selection:bg-[#84FFC1] selection:text-[#121B26] bg-[url('./assets/bg-image.png')] bg-cover bg-no-repeat">
+  <div class="min-h-screen w-full bg-[#121B26] font-[Manrope,sans-serif] overflow-x-hidden selection:bg-[#84FFC1] selection:text-[#121B26] bg-[url('./assets/bg-image.png')] bg-cover bg-no-repeat pb-[50px]">
     <Header />
     <main>
       <Hero />
@@ -24,6 +24,4 @@ import Footer from './components/Footer.vue'
   </div>
 </template>
 
-<style>
-html { scroll-behavior: smooth; }
-</style>
+<style></style>
