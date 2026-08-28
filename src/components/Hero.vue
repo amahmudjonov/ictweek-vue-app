@@ -31,8 +31,9 @@ function togglePlay() {
                 src="../assets/Highlights_ICT_Week_Uzbekistan_2025_One_Vision,_One_Future_97mb (1).mp4"
                 alt="ICT Week 2026 - Summit preview video"
                 class="w-full h-full object-cover"
+                preload="metadata"
                 muted
-                loading="eager"
+                playsinline
                 @ended="isPlaying = false"
               ></video>
               <button
@@ -59,7 +60,7 @@ function togglePlay() {
           <div class="w-full xl:w-[483px] xl:h-[500px] bg-[#121B26]/30 rounded-[24px] flex flex-col justify-between p-[24px] flex-shrink-0 stat-card">
             <div class="flex flex-col gap-4">
               <div class="w-full h-[140px] xl:h-[187px] rounded-[16px] overflow-hidden bg-gradient-to-br from-[#84FFC1]/10 to-transparent relative">
-                <img src="../assets/Image.png" alt="">
+                <img src="../assets/Image.png" alt="" width="567" height="187" fetchpriority="high" decoding="sync" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-r from-[#155B7F]/30 to-[#1BDB86]/10"></div>
               </div>
 
@@ -129,7 +130,7 @@ function togglePlay() {
               </div>
             </div>
             <div class="self-end">
-              <img src="../assets/dealroom.svg" alt="dealroom" class="h-[21px] object-contain self-start mt-1" />
+              <img src="../assets/dealroom.svg" alt="dealroom" width="80" height="21" loading="lazy" decoding="async" class="h-[21px] object-contain self-start mt-1" />
             </div>
           </div>
 
@@ -148,7 +149,7 @@ function togglePlay() {
               </div>
             </div>
             <div class="self-end">
-              <img src="../assets/StartupBlink.svg" alt="StartupBlink" class="h-[21px] object-contain self-start mt-1" />
+              <img src="../assets/StartupBlink.svg" alt="StartupBlink" width="80" height="21" loading="lazy" decoding="async" class="h-[21px] object-contain self-start mt-1" />
             </div>
           </div>
 
@@ -157,15 +158,15 @@ function togglePlay() {
             <div class="flex flex-col gap-[5px]">
               <div class="flex text-[32px] gap-[10px]">
                 <span class="text-whie text-[28px] xl:text-[32px] font-bold leading-none">2</span>
-                <img src="../assets/unicorn_icon.svg" alt="Unicorn" class="w-[28px] h-[28px] object-contain" />
+                <img src="../assets/unicorn_icon.svg" alt="Unicorn" width="28" height="28" loading="lazy" decoding="async" class="w-[28px] h-[28px] object-contain" />
               </div>
               <div class="text-[14px]">
                 Fintech<br />Unicorns
               </div>
             </div>
             <div class="self-end flex flex-col gap-[15px] mt-[35px]">
-              <img src="../assets/uzum_logo.svg" alt="uzum_logo" class="h-[24px] object-contain self-start mt-1" />
-              <img src="../assets/tbc_logo.svg" alt="tbc_logo" class="h-[24px] object-contain self-start mt-1" />
+              <img src="../assets/uzum_logo.svg" alt="uzum_logo" width="60" height="24" loading="lazy" decoding="async" class="h-[24px] object-contain self-start mt-1" />
+              <img src="../assets/tbc_logo.svg" alt="tbc_logo" width="60" height="24" loading="lazy" decoding="async" class="h-[24px] object-contain self-start mt-1" />
             </div>
           </div>
         </div>
